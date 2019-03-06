@@ -7,7 +7,7 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/magnitude_textview"
+        android:id="@+id/magnitude_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -15,7 +15,7 @@
         tools:text="7.2" />
 
     <TextView
-        android:id="@+id/location_textview"
+        android:id="@+id/location_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -23,7 +23,7 @@
         tools:text="San Francisco" />
 
     <TextView
-        android:id="@+id/date_textview"
+        android:id="@+id/date_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
