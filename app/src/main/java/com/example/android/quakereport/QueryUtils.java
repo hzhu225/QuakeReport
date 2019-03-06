@@ -41,8 +41,6 @@ public final class QueryUtils {
 
         try
         {
-            // TODO: Parse the response given by the SAMPLE_JSON_RESPONSE string and
-            // build up a list of Earthquake objects with the corresponding data.
             JSONObject root = new JSONObject(SAMPLE_JSON_RESPONSE);
             JSONArray features = root.getJSONArray("features");
 
