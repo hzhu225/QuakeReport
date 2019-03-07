@@ -48,15 +48,11 @@ public final class QueryUtils {
             {
                 JSONObject currentEQ = features.getJSONObject(i);
                 JSONObject properties = currentEQ.getJSONObject("properties");
-                String mag = properties.getString("mag");
+                double mag = properties.getDouble("mag");
                 String location = properties.getString("place");
                 long time = Long.decode(properties.getString("time"));
-                Date dateObj = new Date(time);
 
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("DD/MM/yyyy");
-                String date = dateFormatter.format(dateObj);
-
-                Earthquake eq = new Earthquake(mag, location, date);
+                Earthquake eq = new Earthquake(mag, location, time);
                 earthquakes.add(eq);
             }
 
