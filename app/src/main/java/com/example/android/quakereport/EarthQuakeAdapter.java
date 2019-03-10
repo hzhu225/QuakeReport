@@ -3,13 +3,13 @@ package com.example.android.quakereport;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
+import android.graphics.drawable.GradientDrawable;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -42,11 +42,13 @@ public class EarthQuakeAdapter extends ArrayAdapter<Earthquake>
         TextView magnitudeTV = (TextView)listItemView.findViewById(R.id.magnitude_tv);
         magnitudeTV.setText(mag_text);
 
+        GradientDrawable magnitudeBG = (GradientDrawable) magnitudeTV.getBackground();
+        int bgColor = getMagnitudeColor(currentEQ.getMagnitude());
+        magnitudeBG.setColor(bgColor);                         //bgColor is ARGB value
 
         String location_full = currentEQ.getLocation();
-        String offset_text = "";
-        String location_text = "";
-
+        String offset_text;
+        String location_text;
 
         if (location_full.contains(LOCATION_SEPARATOR)) {
             String[] parts =location_full.split(LOCATION_SEPARATOR);
@@ -56,7 +58,6 @@ public class EarthQuakeAdapter extends ArrayAdapter<Earthquake>
             offset_text = getContext().getString(R.string.near_the);
             location_text = location_full;
         }
-
 
         TextView offsetTV = (TextView)listItemView.findViewById(R.id.offset_tv);
         offsetTV.setText(offset_text);
@@ -80,6 +81,46 @@ public class EarthQuakeAdapter extends ArrayAdapter<Earthquake>
         timeTV.setText(time_text);
 
         return listItemView;
+    }
+
+    private int getMagnitudeColor(double mag)
+    {
+        int colorId;
+        int magnitudeFloor = (int) Math.floor(mag);
+        switch (magnitudeFloor) {
+            case 0:
+            case 1:
+                colorId = R.color.magnitude1;
+                break;
+            case 2:
+                colorId = R.color.magnitude2;
+                break;
+            case 3:
+                colorId = R.color.magnitude3;
+                break;
+            case 4:
+                colorId = R.color.magnitude4;
+                break;
+            case 5:
+                colorId = R.color.magnitude5;
+                break;
+            case 6:
+                colorId = R.color.magnitude6;
+                break;
+            case 7:
+                colorId = R.color.magnitude7;
+                break;
+            case 8:
+                colorId = R.color.magnitude8;
+                break;
+            case 9:
+                colorId = R.color.magnitude9;
+                break;
+            default:
+                colorId = R.color.magnitude10plus;
+                break;
+        }
+        return ContextCompat.getColor(getContext(), colorId);         //return the ARGB value of color, rather than its id
     }
 
 
