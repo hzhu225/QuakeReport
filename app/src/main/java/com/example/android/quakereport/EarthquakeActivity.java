@@ -21,10 +21,8 @@ import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -48,16 +46,13 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
-
-
+        //set an empty Adapter at start
         mAdapter = new EarthQuakeAdapter(this, new ArrayList<Earthquake>());
 
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(mAdapter);
-
         mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
         listView.setEmptyView(mEmptyStateTextView);
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
@@ -87,11 +82,13 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         }
     }
 
+
     @Override
     public Loader<List<Earthquake>> onCreateLoader(int i, Bundle bundle)
     {
         return new EarthquakeLoader(this, USGS_REQUEST_URL);
     }
+
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes)
@@ -104,7 +101,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 
         if (earthquakes != null && !earthquakes.isEmpty())
         {
-            mAdapter.addAll(earthquakes);
+            mAdapter.addAll(earthquakes);                   //if earthquake is not empty, mEmptyStateTextView won't show
         }
     }
 
