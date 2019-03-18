@@ -40,7 +40,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
 {
 
     //public static final String LOG_TAG = EarthquakeActivity.class.getName();
-    private static final String USGS_REQUEST_URL = "http://earthquake.usgs.gov/fdsnws/event/1/query";
+    private static final String USGS_REQUEST_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query";
     private static final int EARTHQUAKE_LOADER_ID = 1;
     private EarthQuakeAdapter mAdapter;
     private TextView mEmptyStateTextView;
@@ -128,8 +128,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
         uriBuilder.appendQueryParameter("minmag", minMagnitude);
         uriBuilder.appendQueryParameter("orderby", orderBy);
 
-        // Return the completed uri `http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=10&minmag=minMagnitude&orderby=time
-        Toast.makeText(this, uriBuilder.toString(),Toast.LENGTH_LONG).show();
+        // Return the completed uri `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=10&minmag=minMagnitude&orderby=time
         return new EarthquakeLoader(this, uriBuilder.toString());
     }
 

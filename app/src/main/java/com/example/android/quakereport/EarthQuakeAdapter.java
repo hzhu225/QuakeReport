@@ -72,7 +72,7 @@ public class EarthQuakeAdapter extends ArrayAdapter<Earthquake>
         long time_long = currentEQ.getTime();
         Date dateObj = new Date(time_long);
 
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("DD/MM/yyyy");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
         String date_text = dateFormatter.format(dateObj);
         TextView dateTV = (TextView)listItemView.findViewById(R.id.date_tv);
         dateTV.setText(date_text);
